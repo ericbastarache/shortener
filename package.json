@@ -6,7 +6,7 @@
   "author": "Eric Bastarache",
   "license": "MIT",
   "scripts": {
-    "start": "node server"
+    "start": "node server && cd client && yarn start"
   },
   "dependencies": {
     "body-parser": "^1.17.1",
