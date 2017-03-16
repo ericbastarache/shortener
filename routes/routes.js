@@ -1,9 +1,16 @@
 let Url = require('../models/Url');
+let express = require('express');
+let router = express.Router();
 
-exports.create = (req, res, next) => {
-  
-};
 
-exports.list = (req, res) => {
+router.get('/urls', (req, res, next) => {
 
-};
+});
+
+router.get('/urls/:id', (req, res, next) => {
+
+});
+
+router.post('/urls/create', (req, res, next) => {
+
+});
