@@ -1,8 +1,6 @@
 let express = require('express');
 let mongoose = require('mongoose');
 let bodyParser = require('body-parser');
-let cookieSession = require('cookie-session');
-let cookieParser = require('cookie-parser');
 
 let app = express();
 
