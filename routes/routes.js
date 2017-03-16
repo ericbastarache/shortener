@@ -1,16 +1,9 @@
-let Url = require('../models/Url');
 let express = require('express');
 let router = express.Router();
 
+let shorten_controller = require('../controllers/ShortenController');
 
-router.get('/urls', (req, res, next) => {
+router.get('/urls', shorten_controller.all_urls);
+router.post('/urls/create', shorten_controller.create_url);
 
-});
-
-router.get('/urls/:id', (req, res, next) => {
-
-});
-
-router.post('/urls/create', (req, res, next) => {
-
-});
+module.exports = router;
