@@ -1,5 +1,5 @@
 let mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost:3317/urls');
+mongoose.connect('mongodb://localhost/urls');
 
 let db = mongoose.connection;
 
