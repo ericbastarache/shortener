@@ -1,6 +1,6 @@
 let Url = mongoose.Schema({
   _id: mongoose.Schema.Types.ObjectId,
-  link: String,
+  urls: String,
   token: String
 });
 
