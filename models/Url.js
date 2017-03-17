@@ -1,6 +1,6 @@
 let mongoose = require('mongoose');
-
-let Url = mongoose.Schema({
+let Schema = mongoose.Schema;
+let Url = new Schema({
   _id: mongoose.Schema.Types.ObjectId,
   urls: String,
   token: String
