@@ -6,12 +6,17 @@
   "author": "Eric Bastarache",
   "license": "MIT",
   "scripts": {
-    "start": "node server && cd client && yarn start"
+    "client": "cd client && yarn start",
+    "server": "node server",
+    "start": "concurrently \"yarn server\" \"yarn client\""
   },
   "dependencies": {
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
     "helmet": "^3.5.0",
     "mongoose": "^4.9.0"
+  },
+  "devDependencies": {
+    "concurrently": "^3.4.0"
   }
 }
