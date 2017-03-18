@@ -4,7 +4,7 @@ let bodyParser = require('body-parser');
 let path = require('path');
 let routes = require('./routes/routes');
 let mongoose = require('mongoose');
-mongoose.connect('mongodb://localhost/urls');
+mongoose.connect('mongodb://localhost:27017/urls');
 
 let db = mongoose.connection;
 
