@@ -15,7 +15,7 @@ db.once('open', () => {
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-app.use('/urls', routes);
+app.use('/', routes);
 
 app.listen(3100, () => {
   console.log('Server started on port 3100');
