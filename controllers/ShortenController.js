@@ -1,7 +1,7 @@
 let Url = require('../models/Url');
 
 exports.index =  (req, res) => {
-  res.send('Hello world');
+  res.redirect('/urls');
 };
 
 exports.all_urls = (req, res, next) => {
