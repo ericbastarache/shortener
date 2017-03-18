@@ -15,10 +15,6 @@ db.once('open', () => {
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
-app.get('/', (req, res) => {
-  res.send('Hello World');
-});
-
 app.use('/urls', routes);
 
 app.listen(3100, () => {
