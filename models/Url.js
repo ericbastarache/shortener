@@ -1,12 +1,25 @@
 let mongoose = require('mongoose');
 let Schema = mongoose.Schema;
-let Url = new Schema({
+let CounterSchema = Schema({
   _id: {
-    type: Schema.ObjectId,
-    default: new ObjectId()
+    type: String,
+    required: true
   },
-  urls: String,
-  token: String
+  seq: {
+    type: Number,
+    default: 0
+  }
 });
 
-module.exports = mongoose.model('Url', Url);
+let counter = mongoose.model('Counter', CounterSchema);
+
+let UrlSchema = new Schema({
+  _id: {
+    type: Number,
+    index: true
+  },
+  long_url: String,
+  created_at: Date
+});
+
+module.exports = mongoose.model('Url', UrlSchema);
