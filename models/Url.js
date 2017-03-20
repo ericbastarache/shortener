@@ -22,4 +22,17 @@ let UrlSchema = new Schema({
   created_at: Date
 });
 
+UrlSchema.pre('save', (next) => {
+  let doc = this;
+  counter.findByIdAndUpdate({_id: 'url_count'}, {$inc: {seq: 1} }, (error, counter) => {
+    if(error) {
+      return next(error);
+    } else {
+      doc.created_at = new Date();
+      doc._id = counter.seq;
+      next();
+    }
+  });
+});
+
 module.exports = mongoose.model('Url', UrlSchema);
