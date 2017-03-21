@@ -7,7 +7,9 @@ class UrlForm extends Component {
     super(props);
 
     this.state = {
-      value: ''
+      value: '',
+      shortU: ''
+      showShort: false
     }
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -31,6 +33,7 @@ class UrlForm extends Component {
       }
     }).then((response) => {
       console.log(response);
+      //this.setState({showShort: true, showU: response.vaue});
     }).catch((error) => {
       console.log(error);
     });
