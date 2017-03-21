@@ -8,7 +8,7 @@ class UrlForm extends Component {
 
     this.state = {
       value: '',
-      shortU: ''
+      shortU: '',
       showShort: false
     }
 
@@ -28,6 +28,7 @@ class UrlForm extends Component {
       headers: {
         'Access-Control-Allow-Origin': '*'
       },
+      dataType: 'JSON',
       data: {
         long_url: this.state.value
       }
