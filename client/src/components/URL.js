@@ -5,13 +5,7 @@ class URL extends Component {
     return (
       <div>
         <li style={{borderBottom: '1px dashed #ccc'}}>
-          <a href="#">Some URL</a>
-        </li>
-        <li style={{borderBottom: '1px dashed #ccc'}}>
-          <a href="#">Some URL</a>
-        </li>
-        <li style={{borderBottom: '1px dashed #ccc'}}>
-          <a href="#">Some URL</a>
+          <a href="#">Some bogus url</a>
         </li>
       </div>
     );
