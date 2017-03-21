@@ -10,7 +10,7 @@ exports.all_urls = (req, res, next) => {
     if (doc) {
       res.redirect(doc.long_url);
     } else {
-      res.redirect(config.webhost);
+      res.redirect('localhost:3000');
     }
   });
 };
@@ -22,7 +22,8 @@ exports.create_url = (req, res, next) => {
   // check if url already exists in database
   Url.findOne({long_url: longUrl}, function (err, doc){
     if (doc){
-      shortUrl = 'localhost:3000/' + base.encode(doc._id);
+
+      shortUrl = 'localhost:3000/' + base.encode(doc.longId);
 
       // the document exists, so we return it without creating a new entry
       res.send({'shortUrl': shortUrl});
@@ -38,7 +39,7 @@ exports.create_url = (req, res, next) => {
           console.log(err);
         }
 
-        shortUrl = 'localhost:3000/' + base.encode(newUrl._id);
+        shortUrl = 'localhost:3000/' + base.encode(newUrl.longId);
 
         res.send({'shortUrl': shortUrl});
       });
