@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './App.css';
 import Header from './components/Header';
 import UrlForm from './components/UrlForm';
-import LinksContainer from './components/LinksContainer';
 
 class App extends Component {
   render() {
@@ -10,7 +9,6 @@ class App extends Component {
       <div>
         <Header title="Simple URL Shortener" />
         <UrlForm />
-        <LinksContainer />
       </div>
     );
   }
