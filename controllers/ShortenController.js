@@ -1,13 +1,48 @@
 let Url = require('../models/Url');
+let base = require('../base/base');
 
-exports.index =  (req, res) => {
-  res.redirect('/urls');
-};
 
 exports.all_urls = (req, res, next) => {
-  res.send('NOT YET IMPLEMENTED: Retrieve URLS');
+  let shortId = req.params.url_id;
+  let id = base.decode(shortId);
+
+  Url.findOne({_id: id}, function (err, doc){
+    if (doc) {
+      res.redirect(doc.long_url);
+    } else {
+      res.redirect(config.webhost);
+    }
+  });
 };
 
 exports.create_url = (req, res, next) => {
-  res.send('NOT YET IMPLEMENTED: Create URL');
+  var longUrl = req.body.url;
+  var shortUrl = '';
+
+  // check if url already exists in database
+  Url.findOne({long_url: longUrl}, function (err, doc){
+    if (doc){
+      shortUrl = 'localhost:3000/' + base.encode(doc._id);
+
+      // the document exists, so we return it without creating a new entry
+      res.send({'shortUrl': shortUrl});
+    } else {
+      // since it doesn't exist, let's go ahead and create it:
+      var newUrl = Url({
+        long_url: longUrl
+      });
+
+      // save the new link
+      newUrl.save(function(err) {
+        if (err){
+          console.log(err);
+        }
+
+        shortUrl = 'localhost:3000/' + base.encode(newUrl._id);
+
+        res.send({'shortUrl': shortUrl});
+      });
+    }
+
+  });
 };
