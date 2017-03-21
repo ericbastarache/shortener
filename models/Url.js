@@ -10,19 +10,20 @@ let counter = mongoose.model('counter', CounterSchema);
 
 // create a schema for our links
 let urlSchema = new Schema({
-  _id: {type: Number, index: true},
+  longId: {type: Number, index: true},
   long_url: String,
   created_at: Date
 });
 
 urlSchema.pre('save', (next) => {
   var doc = this;
-  counter.findByIdAndUpdate({_id: 'url_count'}, {$inc: {seq: 1} }, {new: true}, (error, counter) => {
-      if (error)
-        return next(error);
-      doc.created_at = new Date();
-      doc._id = counter.seq;
-      next();
+  counter.findByIdAndUpdate({_id: 'url_count'}, {$inc: {seq: 1} }, {new: true, upsert: true }, (error, counter) => {
+    if(error)
+      return next(error);
+    doc.longId = counter.seq;
+    doc.created_at = new Date();
+    next();
+    
   });
 });
 
