@@ -17,13 +17,13 @@ let urlSchema = new Schema({
 
 urlSchema.pre('save', (next) => {
   var doc = this;
-  counter.findByIdAndUpdate({_id: 'url_count'}, {$inc: {seq: 1} }, {new: true, upsert: true }, (error, counter) => {
+  counter.findByIdAndUpdate({_id: 'url_count'}, {$inc: {seq: 1} }, {new: true }, (error, counter) => {
     if(error)
       return next(error);
     doc.longId = counter.seq;
     doc.created_at = new Date();
     next();
-    
+
   });
 });
 
