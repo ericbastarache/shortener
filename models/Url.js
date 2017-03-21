@@ -1,38 +1,31 @@
-let mongoose = require('mongoose');
-let Schema = mongoose.Schema;
+const mongoose = require('mongoose');
+const Schema = mongoose.Schema;
+
 let CounterSchema = Schema({
-  _id: {
-    type: String,
-    required: true
-  },
-  seq: {
-    type: Number,
-    default: 0
-  }
+    _id: {type: String, required: true},
+    seq: { type: Number, default: 0 }
 });
 
-let counter = mongoose.model('Counter', CounterSchema);
+let counter = mongoose.model('counter', CounterSchema);
 
-let UrlSchema = new Schema({
-  _id: {
-    type: Number,
-    index: true
-  },
+// create a schema for our links
+let urlSchema = new Schema({
+  _id: {type: Number, index: true},
   long_url: String,
   created_at: Date
 });
 
-UrlSchema.pre('save', (next) => {
-  let doc = this;
-  counter.findByIdAndUpdate({_id: 'url_count'}, {$inc: {seq: 1} }, (error, counter) => {
-    if(error) {
-      return next(error);
-    } else {
+urlSchema.pre('save', (next) => {
+  var doc = this;
+  counter.findByIdAndUpdate({_id: 'url_count'}, {$inc: {seq: 1} }, {new: true}, (error, counter) => {
+      if (error)
+        return next(error);
       doc.created_at = new Date();
       doc._id = counter.seq;
       next();
-    }
   });
 });
 
-module.exports = mongoose.model('Url', UrlSchema);
+let Url = mongoose.model('Url', urlSchema);
+
+module.exports = Url;
