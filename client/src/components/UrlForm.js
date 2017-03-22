@@ -8,8 +8,7 @@ class UrlForm extends Component {
 
     this.state = {
       value: '',
-      shortU: '',
-      showShort: false
+      shortU: ''
     }
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -22,21 +21,12 @@ class UrlForm extends Component {
 
   handleSubmit (event) {
     event.preventDefault();
-    axios({
-      method: 'post',
-      url: '/urls/create',
-      headers: {
-        'Access-Control-Allow-Origin': '*'
-      },
-      dataType: 'JSON',
-      data: {
-        long_url: this.state.value
-      }
-    }).then((response) => {
-      console.log(response);
-      //this.setState({showShort: true, showU: response.vaue});
-    }).catch((error) => {
-      console.log(error);
+    axios.post(`http://localhost:3100/urls/${this.state.value}`)
+      .then(response => {
+        this.setState({shortU: response.data.short_url});
+        //console.log(response.data.short_url);
+    }).catch(err => {
+      console.log(err);
     });
   }
 
@@ -56,9 +46,7 @@ class UrlForm extends Component {
         <Row>
           <Col md={6} mdOffset={3}>
             <ul style={{listStyle: 'none', textAlign: 'center', border: '1px solid #ccc', boxShadow: '0 0 3px #ddd', marginTop: '10px', padding: '10px'}}>
-              <li style={{borderBottom: '1px dashed #ccc'}}>
-                <a href="#">Some bogus url</a>
-              </li>
+              { this.state.shortU ? <a style={{borderBottom: '1px dashed #000'}} href={this.state.shortU}>{this.state.shortU}</a> : <a>No Short URL</a> }
             </ul>
           </Col>
         </Row>
