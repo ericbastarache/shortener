@@ -21,10 +21,9 @@ class UrlForm extends Component {
 
   handleSubmit (event) {
     event.preventDefault();
-    axios.post(`http://localhost:3100/urls/${this.state.value}`)
+    axios.post(`urls/${this.state.value}`)
       .then(response => {
-        this.setState({shortU: response.data.short_url});
-        //console.log(response.data.short_url);
+        this.setState({shortU: `http://localhost:3100/${response.data.short_url}`});
     }).catch(err => {
       console.log(err);
     });
