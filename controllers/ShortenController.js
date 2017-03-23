@@ -7,8 +7,6 @@ exports.get_id = (req, res) => {
     short: req.params.url_id
   }).then(found => {
     if (found) {
-      console.log(found);
-      return;
       res.redirect(found.url);
     } else {
       res.json({
@@ -28,7 +26,7 @@ exports.create_url = (req, res) => {
     if (foundUrl) {
       const foundUrlObj = {
         original_url: foundUrl.url,
-        short_url: `http://localhost:3000/${foundUrl.short}`
+        short_url: foundUrl.short
       };
       res.json(foundUrlObj);
     } else {
@@ -40,7 +38,7 @@ exports.create_url = (req, res) => {
           .then(newUrl => {
             const newUrlObj = {
               original_url: newUrl.url,
-              short_url: `http://localhost:3000/${newUrl.short}`
+              short_url: newUrl.short
             };
             res.json(newUrlObj);
           });
