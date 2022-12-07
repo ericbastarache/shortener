@@ -13,7 +13,7 @@
   "dependencies": {
     "axios": "^0.15.3",
     "body-parser": "^1.17.1",
-    "express": "^4.15.2",
+    "express": "^4.17.3",
     "helmet": "^3.5.0",
     "mongoose": "^4.9.0",
     "shortid": "^2.2.8",
